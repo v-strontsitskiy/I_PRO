@@ -1,15 +1,22 @@
-#include "stdafx.h"
+#include <stdafx.h>
 #include <gl\glut.h>
 #include <math.h>
 
-
 float WinWid=1000.0;
-float WinHei=400.0,hx=0,hy=0;
+float WinHei=400.0;
 int q=0;
 int z=0;
 int g=0;
-int cx=0,xs=0,cy=0,ys=0;
-
+int s=1;
+int d=0;
+int e=0;
+int r=0,q1=0,q2=0,q3=0,q4=0;
+int t=0;
+double l=0;
+int m=0;
+int f=0,jk=0;
+int u=0;
+int o=0,zx=0,pd=0,zd=0;
 void Draw()
 {
 glClear(GL_COLOR_BUFFER_BIT);
@@ -23,7 +30,7 @@ glBegin(GL_LINE_LOOP);
   float dx = 10 * cosf(angle);
   float dy = 10 * sinf(angle);
 
-  glVertex2f(130 + dx+q, 30 + dy);
+  glVertex2f(130 + dx+q+m, 30 + dy+l*0.5+f*2);//1
 }
 
  glEnd(); 
@@ -36,44 +43,44 @@ glBegin(GL_LINE_LOOP);
   float dx = 10 * cosf(angle);
   float dy = 10 * sinf(angle);
 
-  glVertex2f(180 + dx+q, 30 + dy);
+  glVertex2f(180 + dx+q+m, 30 + dy+l*0.5);
 } glEnd();
 
   glBegin(GL_LINE_LOOP); //машинка
-  glVertex2f(140+q,30);
-   glVertex2f(170+q,30);
+  glVertex2f(140+q+m,30+l*0.5+f*2);//2 між колесами
+   glVertex2f(170+q+m,30+l*0.5);//2
     glEnd(); 
 glBegin(GL_LINE_LOOP);
-glVertex2f(210+q,30);
-   glVertex2f(190+q,30);
+glVertex2f(210+q+m,30+l*0.5-f*1.5);//7 спереду колеса
+   glVertex2f(190+q+m,30+l*0.5);//7
 glEnd(); 
 glBegin(GL_LINE_LOOP);
-glVertex2f(210+q,30);
-glVertex2f(210+q,45);
+glVertex2f(210+q+m,30+l*0.5-f);
+glVertex2f(210+q+m,45+l*0.5-f*2); // перед
   glEnd(); 
 glBegin(GL_LINE_LOOP);
-glVertex2f(210+q,45);
-glVertex2f(100+q,45); 
+glVertex2f(210+q+m,45+l*0.5-f*2);//3
+glVertex2f(100+q+m,45+l*0.5+f*4);//3 лінія під кабіною
  glEnd(); 
  glBegin(GL_LINE_LOOP);
-glVertex2f(100+q,45);
-   glVertex2f(100+q,30);
+glVertex2f(100+q+m,45+l*0.5+f*3.7);//4 зад
+   glVertex2f(100+q+m,30+l*0.5+f*4);//4
 glEnd(); 
 glBegin(GL_LINE_LOOP);
-glVertex2f(100+q,30);
-   glVertex2f(120+q,30);
+glVertex2f(100+q+m,30+l*0.5+f*4);//5 лінія ззаду колеса
+   glVertex2f(120+q+m,30+l*0.5+f*3);//5
 glEnd(); 
 glBegin(GL_LINE_LOOP);
-glVertex2f(155+q,65);
-   glVertex2f(155+q,45);
+glVertex2f(155+q+m,65+l*0.5+f*2);//6 зад кабіни
+   glVertex2f(155+q+m,45+l*0.5+f);//6
 glEnd(); 
 glBegin(GL_LINE_LOOP);
-glVertex2f(155+q,65);
-   glVertex2f(190+q,65);
+glVertex2f(155+q+m,65+l*0.5+f*2);// криша
+   glVertex2f(190+q+m,65+l*0.5);
 glEnd();
 glBegin(GL_LINE_LOOP);
-glVertex2f(190+q,65);
-   glVertex2f(190+q,45);
+glVertex2f(190+q+m,65+l*0.5);//зад криші
+   glVertex2f(190+q+m,45+l*0.5);
 glEnd();
 
 glBegin(GL_LINE_LOOP); //качеля
@@ -88,14 +95,14 @@ glBegin(GL_LINE_LOOP); //качеля
   glVertex2f(500 + dx, 35 + dy);
 } glEnd();
  glBegin(GL_LINES); 
-  glVertex2f(360,50-z*0.5);
-  glVertex2f(640,50+z*0.5);
-  glVertex2f(640,50+z*0.5);
-  glVertex2f( 640,46+z*0.5);
-  glVertex2f( 640,46+z*0.5);
-  glVertex2f(360,46-z*0.5);
-  glVertex2f(360,46-z*0.5);
-  glVertex2f(360,50-z*0.5); 
+  glVertex2f(360,50-z*0.5+u+o);
+  glVertex2f(640,50+z*0.5+u-o);
+  glVertex2f(640,50+z*0.5+u-o);
+  glVertex2f( 640,46+z*0.5+u-o);
+  glVertex2f( 640,46+z*0.5+u-o);
+  glVertex2f(360,46-z*0.5+u+o);
+  glVertex2f(360,46-z*0.5+u+o);
+  glVertex2f(360,50-z*0.5+u+o); 
   glEnd();
 
 glBegin(GL_LINES);  //земля
@@ -110,100 +117,147 @@ glBegin(GL_LINES);  //земля
  glEnd();
 
 glBegin(GL_LINES);
-   glVertex2f(800,20);//стовп
-  glVertex2f(800,200);
-  glVertex2f(800,200);
-  glVertex2f( 805,200);
-  glVertex2f( 805,200);
-  glVertex2f(805,20);   
+   glVertex2f(820,20+(0.05*jk));//стовп
+  glVertex2f(820+pd,200+zd);
+  glVertex2f(820+pd,200+zd);
+  glVertex2f( 825+pd,200+zd);
+  glVertex2f( 825+pd,200+zd);
+  glVertex2f(825,20);   
+glEnd();
+glBegin(GL_LINES); //вер
+  glVertex2f(780+pd,205+zd-(0.4*zd));
+  glVertex2f(860+pd,205+(0.7*zd)+(0.6*zd));
+  glVertex2f(860+pd,205+(0.7*zd)+(0.6*zd));
+  glVertex2f( 860+pd,200+(0.7*zd)+(0.6*zd));
+  glVertex2f( 860+pd,200+(0.7*zd)+(0.6*zd));
+  glVertex2f(780+pd,200+zd-(0.4*zd));
+  glVertex2f(780+pd,200+zd-(0.4*zd));
+  glVertex2f(780+pd,205+zd-(0.4*zd)); 
+  glEnd();
+glBegin(GL_LINES); //лг
+  glVertex2f(780+pd,200+zd-(0.4*zd));
+  glVertex2f(785+pd,200+zd-(0.4*zd));
+  glVertex2f(785+pd,200+zd-(0.4*zd));
+  glVertex2f( 785+pd,190+zd-(0.4*zd));
+  glVertex2f( 785+pd,190+zd-(0.4*zd));
+  glVertex2f(780+pd,190+zd-(0.4*zd));
+  glVertex2f(780+pd,190+zd-(0.4*zd));
+  glVertex2f(780+pd,200+zd-(0.4*zd)); 
+  glEnd();
+glBegin(GL_LINES); //пг
+  glVertex2f(855+pd,200+(0.7*zd)+(0.6*zd));
+  glVertex2f(860+pd,200+(0.7*zd)+(0.6*zd));
+  glVertex2f(860+pd,200+(0.7*zd)+(0.6*zd));
+  glVertex2f( 860+pd,190+(0.7*zd)+(0.6*zd));
+  glVertex2f( 860+pd,190+(0.7*zd)+(0.6*zd));
+  glVertex2f(855+pd,190+(0.7*zd)+(0.6*zd));
+  glVertex2f(855+pd,190+(0.7*zd)+(0.6*zd));
+  glVertex2f(855+pd,200+(0.7*zd)+(0.6*zd)); 
+  glEnd();
+  glBegin(GL_LINES); //плафони
+  glVertex2f(770*s,(190+g)*s);
+  glVertex2f(795*s,(190+g)*s);
+  glVertex2f(795*s,(190+g)*s);
+  glVertex2f( 795*s,(175+g)*s);
+  glVertex2f( 795*s,(175+g)*s);			
+  glVertex2f(770*s,(175+g)* s);
+  glVertex2f(770*s,(175+g)*s);
+  glVertex2f(770*s,(190+g)*s); 
+    glEnd();
+    glBegin(GL_LINES); 
+  glVertex2f(845+zx,(190+g));
+  glVertex2f(870+zx,(190+g));
+  glVertex2f(870+zx,(190+g));
+  glVertex2f( 870+zx,(175+g));
+  glVertex2f( 870+zx,(175+g));
+  glVertex2f(845+zx,(175+g));
+  glVertex2f(845+zx,(175+g));
+  glVertex2f(845+zx,(190+g)); 
+    glEnd();
+	glPolygonMode (GL_BACK, GL_LINE);
+	glBegin(GL_QUADS);
+	glVertex2f((770*e)-r,((20*e)+r)+t);
+	glVertex2f((770*e)-r,((35*e)+r)+t);
+	glVertex2f((782.5*e)-r,((35*e)+r)+t);
+	glVertex2f((782.5*e)-r,((20*e)+r)+t);
+	glEnd();
+	glBegin(GL_QUADS);
+	glVertex2f((782.5*e)+r,(20*e)+r);
+	glVertex2f((782.5*e)+r,(35*e)+r);
+	glVertex2f((795*e)+r,(35*e)+r);
+	glVertex2f((795*e)+r,(20*e)+r);
+	glEnd();
+	    glBegin(GL_LINES); 
+glVertex2f(780,175*q1);
+  glVertex2f(780,155*q1);
+glEnd();
+ glBegin(GL_LINES); 
+glVertex2f(860,175*q1);
+  glVertex2f(860,155*q1);
+glEnd();
+
+ glBegin(GL_LINES); 
+glVertex2f(780,135*q2);
+  glVertex2f(780,115*q2);
+glEnd();
+ glBegin(GL_LINES); 
+glVertex2f(860,135*q2);
+  glVertex2f(860,115*q2);
 glEnd();
 glBegin(GL_LINES); 
-  glVertex2f(760,205);
-  glVertex2f(840,205);
-  glVertex2f(840,205);
-  glVertex2f( 840,200);
-  glVertex2f( 840,200);
-  glVertex2f(760,200);
-  glVertex2f(760,200);
-  glVertex2f(760,205); 
-  glEnd();
+glVertex2f(780,95*q3);
+  glVertex2f(780,75*q3);
+glEnd();
+ glBegin(GL_LINES); 
+glVertex2f(860,95*q3);
+  glVertex2f(860,75*q3);
+glEnd();
 glBegin(GL_LINES); 
-  glVertex2f(760,200);
-  glVertex2f(765,200);
-  glVertex2f(765,200);
-  glVertex2f( 765,190);
-  glVertex2f( 765,190);
-  glVertex2f(760,190);
-  glVertex2f(760,190);
-  glVertex2f(760,200); 
-  glEnd();
-glBegin(GL_LINES); 
-  glVertex2f(835,200);
-  glVertex2f(840,200);
-  glVertex2f(840,200);
-  glVertex2f( 840,190);
-  glVertex2f( 840,190);
-  glVertex2f(835,190);
-  glVertex2f(835,190);
-  glVertex2f(835,200); 
-  glEnd();
-  glBegin(GL_LINES); //плафони цілі
-  glVertex2f(750,190+g);
-  glVertex2f(775,190+g);
-  glVertex2f(775,190+g);
-  glVertex2f( 775,175+g);
-  glVertex2f( 775,175+g);
-  glVertex2f(750,175+g);
-  glVertex2f(750,175+g);
-  glVertex2f(750,190+g); 
-    glEnd();
-  glBegin(GL_LINES); 
-  glVertex2f(825,190+g);
-  glVertex2f(850,190+g);
-  glVertex2f(850,190+g);
-  glVertex2f( 850,175+g);
-  glVertex2f( 850,175+g);
-  glVertex2f(825,175+g);
-  glVertex2f(825,175+g);
-  glVertex2f(825,190+g); 
-    glEnd();
-	
-	glBegin(GL_LINES); //плафон л 1ч
-  glVertex2f(1050+xs-hx,35+hy);
-  glVertex2f(1062+xs-hx,35+hy);
-  glVertex2f(1062+xs-hx,35+hy);
-  glVertex2f(1062+xs-hx,20+hy);
-  glVertex2f(1062+xs-hx,20+hy);
-  glVertex2f(1050+xs-hx,20+hy);
-  glVertex2f(1050+xs-hx,20+hy);
-  glVertex2f(1050+xs-hx,35+hy); 
-    glEnd();
-	glBegin(GL_LINES); //л 2ч
-  glVertex2f(1062+xs+hx,35+hy*1.8);
-  glVertex2f(1075+xs+hx,35+hy*1.8);
-  glVertex2f(1075+xs+hx,35+hy*1.8);
-  glVertex2f( 1075+xs+hx,20+hy*1.8);
-  glVertex2f( 1075+xs+hx,20+hy*1.8);
-  glVertex2f(1062+xs+hx,20+hy*1.8);
-  glVertex2f(1062+xs+hx,20+hy*1.8);
-  glVertex2f(1062+xs+hx,35+hy*1.8); 
-    glEnd();
-
+glVertex2f(780,55*q4);
+  glVertex2f(780,35*q4);
+glEnd();
+ glBegin(GL_LINES); 
+glVertex2f(860,55*q4);
+  glVertex2f(860,35*q4);
+glEnd();
 glutSwapBuffers();
 }
 
+
 void Timer(int)
 {if(q<150){q+=3;}
+if(q<150){u=0;}
 if(z<50){z+=1;}
 if(q>146&g>-155){g-=3;}
-if(g<-152&g>-157){g-=50;xs-=300;}
-if(q>146&xs<-200){hx+=3.1;}
-if(q>146&hx<350){hy+=0.55;}
-if(q>146&hx>370){hy-=0.55;}
+if(g<-150){s=0;}
+if(s<=0){d=1;}
+if(d>=1){e=1.0;}
+if(e>=1.0){r+=5;}
+if(r>=200){t-=6;}
+if(g<-1&l<60){l+=1;}
+if(g<-1&m<420){m+=3;}
+if(g<-1){f=-2.7;}
+
+
+if(m>165&o<50){o+=2;}
+
+if(m>205&f<0.5){f+=1.5;}
+if(m>185){f+=3;}
+if(m>190&l>-1){l-=2.015;}
+if(m>360){f=0;}
+if(m>417){q+=4;}
+if(q>220){zx+=8;}
+if(q>190&q<370){pd+=5;}
+if(q>190&q<560){zd-=2;jk+=1;}
+if(g<-30){q1=1;}
+if(g<-70){q2=1;}
+if(g<-110){q3=1;}
+if(g<-140){q4=1;}
+if(g<-150){q1=0;q2=0;q3=0;q4=0;}
 Draw();
 
 
-glutTimerFunc(50,Timer,0);
+glutTimerFunc(75,Timer,0);
 }
 
 void Initialize()
@@ -224,9 +278,10 @@ glutInitWindowPosition(100,200);
 glutCreateWindow("I_Pro");
 //reg
 glutDisplayFunc(Draw);
-glutTimerFunc(50,Timer,0);
+glutTimerFunc(75,Timer,0);
 Initialize();
 glutMainLoop();
 
 return 0;
 }
+
