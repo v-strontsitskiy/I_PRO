@@ -1,0 +1,289 @@
+#include <stdafx.h>
+#include <gl\glut.h>
+#include <math.h>
+
+float WinWid=1000.0;
+float WinHei=400.0;
+int movecar=0;
+int lowering_shoulder_left=0;
+int drop_light=0;
+int disappearance_left_lamps=1;
+int appearance_2_left_lamp=0;
+int flying_lantern_parts=0;
+
+int q1=0,q2=0,q3=0,q4=0;
+int Flight_lantern_down=0;
+double car_up=0;
+int movement_on_shoulder=0;
+int turn_machine_at_angle_relative_shoulder=0,jk=0;
+int u=0;
+int lowering_shoulder_right=0;
+int departure_right_lamp=0;
+int drop_column_x=0;
+int drop_column_y=0;
+
+
+void Draw()
+{
+glClear(GL_COLOR_BUFFER_BIT);
+glColor3f(1.0,1.0,1.0);
+glBegin(GL_LINE_LOOP); 
+
+ for(int i = 0; i < 30; i++) //колесол
+ { 
+  float angle = 2.0 * 3.1415926 * float(i) / 30; 
+
+  float dx = 10 * cosf(angle);
+  float dy = 10 * sinf(angle);
+
+  glVertex2f(130 + dx+movecar+movement_on_shoulder, 30 + dy+car_up*0.5+turn_machine_at_angle_relative_shoulder*2);//1
+}
+
+ glEnd(); 
+ glBegin(GL_LINE_LOOP); 
+
+ for(int i = 0; i < 30; i++) //колесоп
+ { 
+  float angle = 2.0 * 3.1415926 * float(i) / 30; 
+
+  float dx = 10 * cosf(angle);
+  float dy = 10 * sinf(angle);
+
+  glVertex2f(180 + dx+movecar+movement_on_shoulder, 30 + dy+car_up*0.5);
+} glEnd();
+
+  glBegin(GL_LINE_LOOP); //машинка
+  glVertex2f(140+movecar+movement_on_shoulder,30+car_up*0.5+turn_machine_at_angle_relative_shoulder*2);//2 між колесами
+   glVertex2f(170+movecar+movement_on_shoulder,30+car_up*0.5);//2
+    glEnd(); 
+glBegin(GL_LINE_LOOP);
+glVertex2f(210+movecar+movement_on_shoulder,30+car_up*0.5-turn_machine_at_angle_relative_shoulder*1.5);//7 спереду колеса
+   glVertex2f(190+movecar+movement_on_shoulder,30+car_up*0.5);//7
+glEnd(); 
+glBegin(GL_LINE_LOOP);
+glVertex2f(210+movecar+movement_on_shoulder,30+car_up*0.5-turn_machine_at_angle_relative_shoulder);
+glVertex2f(210+movecar+movement_on_shoulder,45+car_up*0.5-turn_machine_at_angle_relative_shoulder*2); // перед
+  glEnd(); 
+glBegin(GL_LINE_LOOP);
+glVertex2f(210+movecar+movement_on_shoulder,45+car_up*0.5-turn_machine_at_angle_relative_shoulder*2);//3
+glVertex2f(100+movecar+movement_on_shoulder,45+car_up*0.5+turn_machine_at_angle_relative_shoulder*4);//3 лінія під кабіною
+ glEnd(); 
+ glBegin(GL_LINE_LOOP);
+glVertex2f(100+movecar+movement_on_shoulder,45+car_up*0.5+turn_machine_at_angle_relative_shoulder*3.7);//4 зад
+   glVertex2f(100+movecar+movement_on_shoulder,30+car_up*0.5+turn_machine_at_angle_relative_shoulder*4);//4
+glEnd(); 
+glBegin(GL_LINE_LOOP);
+glVertex2f(100+movecar+movement_on_shoulder,30+car_up*0.5+turn_machine_at_angle_relative_shoulder*4);//5 лінія ззаду колеса
+   glVertex2f(120+movecar+movement_on_shoulder,30+car_up*0.5+turn_machine_at_angle_relative_shoulder*3);//5
+glEnd(); 
+glBegin(GL_LINE_LOOP);
+glVertex2f(155+movecar+movement_on_shoulder,65+car_up*0.5+turn_machine_at_angle_relative_shoulder*2);//6 зад кабіни
+   glVertex2f(155+movecar+movement_on_shoulder,45+car_up*0.5+turn_machine_at_angle_relative_shoulder);//6
+glEnd(); 
+glBegin(GL_LINE_LOOP);
+glVertex2f(155+movecar+movement_on_shoulder,65+car_up*0.5+turn_machine_at_angle_relative_shoulder*2);// криша
+   glVertex2f(190+movecar+movement_on_shoulder,65+car_up*0.5);
+glEnd();
+glBegin(GL_LINE_LOOP);
+glVertex2f(190+movecar+movement_on_shoulder,65+car_up*0.5);//зад криші
+   glVertex2f(190+movecar+movement_on_shoulder,45+car_up*0.5);
+glEnd();
+
+glBegin(GL_LINE_LOOP); //качеля
+
+ for(int i = 0; i < 30; i++) 
+ { 
+  float angle = 2.0 * 3.1415926 * float(i) / 30; 
+
+  float dx = 12 * cosf(angle);
+  float dy = 12 * sinf(angle);
+
+  glVertex2f(500 + dx, 35 + dy);
+} glEnd();
+ glBegin(GL_LINES); 
+  glVertex2f(360,50-lowering_shoulder_left*0.5+lowering_shoulder_right);
+  glVertex2f(640,50+lowering_shoulder_left*0.5-lowering_shoulder_right);
+  glVertex2f(640,50+lowering_shoulder_left*0.5-lowering_shoulder_right);
+  glVertex2f( 640,46+lowering_shoulder_left*0.5-lowering_shoulder_right);
+  glVertex2f( 640,46+lowering_shoulder_left*0.5-lowering_shoulder_right);
+  glVertex2f(360,46-lowering_shoulder_left*0.5+lowering_shoulder_right);
+  glVertex2f(360,46-lowering_shoulder_left*0.5+lowering_shoulder_right);
+  glVertex2f(360,50-lowering_shoulder_left*0.5+lowering_shoulder_right); 
+  glEnd();
+
+glBegin(GL_LINES);  //земля
+  glVertex2f(10,20);
+  glVertex2f(990,20);
+  glVertex2f(990,20);
+  glVertex2f( 990,15);
+  glVertex2f( 990,15);
+  glVertex2f(10,15);
+  glVertex2f(10,15);
+  glVertex2f(10,20);  
+ glEnd();
+
+glBegin(GL_LINES);
+   glVertex2f(820,20+(0.05*jk));//стовп
+  glVertex2f(820+drop_column_x,200+drop_column_y);
+  glVertex2f(820+drop_column_x,200+drop_column_y);
+  glVertex2f( 825+drop_column_x,200+drop_column_y);
+  glVertex2f( 825+drop_column_x,200+drop_column_y);
+  glVertex2f(825,20);   
+glEnd();
+glBegin(GL_LINES); //вер
+  glVertex2f(780+drop_column_x,205+drop_column_y-(0.4*drop_column_y));
+  glVertex2f(860+drop_column_x,205+(0.7*drop_column_y)+(0.6*drop_column_y));
+  glVertex2f(860+drop_column_x,205+(0.7*drop_column_y)+(0.6*drop_column_y));
+  glVertex2f( 860+drop_column_x,200+(0.7*drop_column_y)+(0.6*drop_column_y));
+  glVertex2f( 860+drop_column_x,200+(0.7*drop_column_y)+(0.6*drop_column_y));
+  glVertex2f(780+drop_column_x,200+drop_column_y-(0.4*drop_column_y));
+  glVertex2f(780+drop_column_x,200+drop_column_y-(0.4*drop_column_y));
+  glVertex2f(780+drop_column_x,205+drop_column_y-(0.4*drop_column_y)); 
+  glEnd();
+glBegin(GL_LINES); //лг
+  glVertex2f(780+drop_column_x,200+drop_column_y-(0.4*drop_column_y));
+  glVertex2f(785+drop_column_x,200+drop_column_y-(0.4*drop_column_y));
+  glVertex2f(785+drop_column_x,200+drop_column_y-(0.4*drop_column_y));
+  glVertex2f( 785+drop_column_x,190+drop_column_y-(0.4*drop_column_y));
+  glVertex2f( 785+drop_column_x,190+drop_column_y-(0.4*drop_column_y));
+  glVertex2f(780+drop_column_x,190+drop_column_y-(0.4*drop_column_y));
+  glVertex2f(780+drop_column_x,190+drop_column_y-(0.4*drop_column_y));
+  glVertex2f(780+drop_column_x,200+drop_column_y-(0.4*drop_column_y)); 
+  glEnd();
+glBegin(GL_LINES); //пг
+  glVertex2f(855+drop_column_x,200+(0.7*drop_column_y)+(0.6*drop_column_y));
+  glVertex2f(860+drop_column_x,200+(0.7*drop_column_y)+(0.6*drop_column_y));
+  glVertex2f(860+drop_column_x,200+(0.7*drop_column_y)+(0.6*drop_column_y));
+  glVertex2f( 860+drop_column_x,190+(0.7*drop_column_y)+(0.6*drop_column_y));
+  glVertex2f( 860+drop_column_x,190+(0.7*drop_column_y)+(0.6*drop_column_y));
+  glVertex2f(855+drop_column_x,190+(0.7*drop_column_y)+(0.6*drop_column_y));
+  glVertex2f(855+drop_column_x,190+(0.7*drop_column_y)+(0.6*drop_column_y));
+glVertex2f(855+drop_column_x,200+(0.7*drop_column_y)+(0.6*drop_column_y)); 
+  glEnd();
+  glBegin(GL_LINES); //плафони
+  glVertex2f(770*disappearance_left_lamps,(190+drop_light)*disappearance_left_lamps);
+  glVertex2f(795*disappearance_left_lamps,(190+drop_light)*disappearance_left_lamps);
+  glVertex2f(795*disappearance_left_lamps,(190+drop_light)*disappearance_left_lamps);
+  glVertex2f( 795*disappearance_left_lamps,(175+drop_light)*disappearance_left_lamps);
+  glVertex2f( 795*disappearance_left_lamps,(175+drop_light)*disappearance_left_lamps);			
+  glVertex2f(770*disappearance_left_lamps,(175+drop_light)* disappearance_left_lamps);
+  glVertex2f(770*disappearance_left_lamps,(175+drop_light)*disappearance_left_lamps);
+  glVertex2f(770*disappearance_left_lamps,(190+drop_light)*disappearance_left_lamps); 
+    glEnd();
+    glBegin(GL_LINES); 
+  glVertex2f(845+departure_right_lamp,(190+drop_light));
+  glVertex2f(870+departure_right_lamp,(190+drop_light));
+  glVertex2f(870+departure_right_lamp,(190+drop_light));
+  glVertex2f( 870+departure_right_lamp,(175+drop_light));
+  glVertex2f( 870+departure_right_lamp,(175+drop_light));
+  glVertex2f(845+departure_right_lamp,(175+drop_light));
+  glVertex2f(845+departure_right_lamp,(175+drop_light));
+  glVertex2f(845+departure_right_lamp,(190+drop_light)); 
+    glEnd();
+	glPolygonMode (GL_BACK, GL_LINE);
+	glBegin(GL_QUADS);
+	glVertex2f((770*appearance_2_left_lamp)-flying_lantern_parts,((20*appearance_2_left_lamp)+flying_lantern_parts)+Flight_lantern_down);
+	glVertex2f((770*appearance_2_left_lamp)-flying_lantern_parts,((35*appearance_2_left_lamp)+flying_lantern_parts)+Flight_lantern_down);
+	glVertex2f((782.5*appearance_2_left_lamp)-flying_lantern_parts,((35*appearance_2_left_lamp)+flying_lantern_parts)+Flight_lantern_down);
+	glVertex2f((782.5*appearance_2_left_lamp)-flying_lantern_parts,((20*appearance_2_left_lamp)+flying_lantern_parts)+Flight_lantern_down);
+	glEnd();
+	glBegin(GL_QUADS);
+	glVertex2f((782.5*appearance_2_left_lamp)+flying_lantern_parts,(20*appearance_2_left_lamp)+flying_lantern_parts);
+	glVertex2f((782.5*appearance_2_left_lamp)+flying_lantern_parts,(35*appearance_2_left_lamp)+flying_lantern_parts);
+	glVertex2f((795*appearance_2_left_lamp)+flying_lantern_parts,(35*appearance_2_left_lamp)+flying_lantern_parts);
+	glVertex2f((795*appearance_2_left_lamp)+flying_lantern_parts,(20*appearance_2_left_lamp)+flying_lantern_parts);
+	glEnd();
+	    glBegin(GL_LINES); 
+glVertex2f(780,175*q1);
+  glVertex2f(780,155*q1);
+glEnd();
+ glBegin(GL_LINES); 
+glVertex2f(860,175*q1);
+  glVertex2f(860,155*q1);
+glEnd();
+
+ glBegin(GL_LINES); 
+glVertex2f(780,135*q2);
+  glVertex2f(780,115*q2);
+glEnd();
+ glBegin(GL_LINES); 
+glVertex2f(860,135*q2);
+  glVertex2f(860,115*q2);
+glEnd();
+glBegin(GL_LINES); 
+glVertex2f(780,95*q3);
+  glVertex2f(780,75*q3);
+glEnd();
+ glBegin(GL_LINES); 
+glVertex2f(860,95*q3);
+  glVertex2f(860,75*q3);
+glEnd();
+glBegin(GL_LINES); 
+glVertex2f(780,55*q4);
+  glVertex2f(780,35*q4);
+glEnd();
+ glBegin(GL_LINES); 
+glVertex2f(860,55*q4);
+  glVertex2f(860,35*q4);
+glEnd();
+glutSwapBuffers();
+}
+
+
+void Timer(int)
+{if(movecar<150){movecar+=3;}//рух машинки дот качелі
+if(lowering_shoulder_left<50){lowering_shoulder_left+=1;}//опускання плеча качелі вліво
+if(movecar>146&drop_light>-155){drop_light-=3;}//падіння ліхтапрів
+if(drop_light<-150){disappearance_left_lamps=0;}//прибираємо лівий ліхтар
+if(disappearance_left_lamps<=0){appearance_2_left_lamp=1.0;}//створюємо дві частини замісь лівого ліхтаря
+if(appearance_2_left_lamp>=1.0){flying_lantern_parts+=5;}//розлітання частинок ліхтарів під кутом вверх
+if(flying_lantern_parts>=200){Flight_lantern_down-=6;}//політ лівої частинки під кутом вниз
+if(drop_light<-1&car_up<60){car_up+=1;}//підйом машинки відносно плеча качелі
+if(drop_light<-1&movement_on_shoulder<420){movement_on_shoulder+=3;}//рух по плечі качелі
+if(drop_light<-1){turn_machine_at_angle_relative_shoulder=-3;}//поворот машинки на кут вліво відносно качелі
+if(movement_on_shoulder>165&lowering_shoulder_right<50){lowering_shoulder_right+=2;}//опускання плеча качелі впаво
+if(movement_on_shoulder>205&turn_machine_at_angle_relative_shoulder<0.5){turn_machine_at_angle_relative_shoulder+=1.5;}//вирівнювання машинки посередині качелі
+if(movement_on_shoulder>185){turn_machine_at_angle_relative_shoulder+=3;}//поворот машинки на кут вправо відносно качелі
+if(movement_on_shoulder>190&car_up>-1){car_up-=2;}//опусканя машинки відносно плеча качелі
+if(movement_on_shoulder>360){turn_machine_at_angle_relative_shoulder=0;}//вирівнюємо машинку відносно горизонту
+if(movement_on_shoulder>417){movecar+=3;}//рух машинки від качелі до кінця екрану
+if(movecar>220){departure_right_lamp+=7;}//виліт вправо правого ліхтаря після удару машинкою
+if(movecar>190&movecar<370){drop_column_x+=5;}//падіння стовпа відносно осі x
+if(movecar>190&movecar<560){drop_column_y-=2;jk+=1;}//падіння ліхтаря відносно осі y
+
+if(drop_light<-30){q1=1;}//поява штрихпунктирів 1
+if(drop_light<-70){q2=1;}//поява штрихпунктирів 2
+if(drop_light<-110){q3=1;}//поява штрихпунктирів 3
+if(drop_light<-140){q4=1;}//поява штрихпунктирів 4
+if(drop_light<-150){q1=0;q2=0;q3=0;q4=0;}//зникнення штрихпунктирів
+Draw();
+
+
+glutTimerFunc(75,Timer,0);
+}
+
+void Initialize()
+{
+glClearColor(0.5,0.5,0.5,1.0);
+glMatrixMode(GL_PROJECTION);
+glLoadIdentity();
+glOrtho(0,WinWid,0,WinHei,-200.0,200.0);
+glMatrixMode(GL_MODELVIEW);
+}
+
+int main(int argc,char** argv)
+{
+glutInit(&argc,argv);
+glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);
+glutInitWindowSize(WinWid,WinHei);
+glutInitWindowPosition(100,200);
+glutCreateWindow("I_Pro");
+//reg
+glutDisplayFunc(Draw);
+glutTimerFunc(75,Timer,0);
+Initialize();
+glutMainLoop();
+
+return 0;
+}
+
